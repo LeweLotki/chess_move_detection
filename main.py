@@ -1,4 +1,5 @@
 from skimage.metrics import structural_similarity
+import os
 import skimage
 import cv2 
 import numpy as np 
@@ -14,7 +15,11 @@ if (cap.isOpened() == False):
     print("Error opening video  file")
 ret, frame = cap.read()  
 
-stockfish = Stockfish(r"E:\stockfish\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe")
+dirname = os.path.dirname(__file__)
+stockfish_path = 'stockfish\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe'
+stockfish_abs_path = os.path.join(dirname, stockfish_path)
+
+stockfish = Stockfish(stockfish_abs_path)
 chessboard_exist = False
 move = 0
 sfposition = [] #lista ruchow dla stockfisha
